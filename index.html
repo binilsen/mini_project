@@ -215,8 +215,7 @@
                         <button class="modal-footer__button" data-bs-dismiss="modal">Cancel</button>
                     </div>
                     <div>
-                        <button class="modal-footer__button" type="submit"
-                            onclick="document.getElementById('vitalForm').submit();" form="vitalForm"
+                        <button class="modal-footer__button" type="submit" form="vitalForm"
                             id="formBtn">Submit</button>
                     </div>
                 </div>
@@ -226,6 +225,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
+        insertSelect();
         $(document).ready(function () {
             let margin = 40;
             $('.vital-input').each(function () {
@@ -245,7 +245,7 @@
             }
             $('.content-control--date').html(getDate());
             $('button.vital-input').click(function () {
-                resetForm(form);
+                resetForm();
                 let tabName = $(this).parent()[0].getAttribute('id').replace('nav-', '')
                 $('.modal-title').html('Bounce - ' + tabName + ' vital');
             });
