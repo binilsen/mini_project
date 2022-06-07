@@ -1,3 +1,20 @@
+/*
+Contains js code for validating the modal form.
+just a default check that enable the user to enter  only numerice value .
+uses bootstrap class is-valid/is-invalid ,dynamically adding to the inputs.
+-------------------------
+validation triggers only on clicking submit button inside the modal.
+All validation function contains a flag which is set to FALSE on encountering a invalid input , making the whole form
+validity FALSE.
+
+function category:
+------------------------
+Primary:triggered for handling the main event
+Secondary:fn to help primary and to render elements in the dom.
+Helper: functions  created for doing the repetative task
+*/
+
+// Helper:add validation class to input
 const addFormClass = (element, valid = true) => {
   if (valid) {
     element.classList += " is-valid";
@@ -8,15 +25,18 @@ const addFormClass = (element, valid = true) => {
   element.classList.remove("is-valid");
   return;
 };
+//Helper:remove all validation classes from the given element
 const removeClasses = (element) => {
   element.classList.remove("is-valid");
   element.classList.remove("is-invalid");
   return;
 };
+//Secondary:return overall form validation status
 const defaultCheck = () => {
   if (validateText() & validateSelect() & validateTimeDate()) return true;
   return false;
 };
+//Helper:reset the form (uses other helper fn)
 const resetForm = () => {
   const form = document.getElementById("vitalForm");
   const inputs = document.querySelectorAll("input[type=text]");
@@ -29,7 +49,8 @@ const resetForm = () => {
   select.forEach((x) => removeClasses(x));
   form.reset();
 };
-
+// Primary:formHandler that process the form on clicking submit
+// just return an alert specifying validation status
 const formHandler = (event) => {
   event.preventDefault();
   let flag = defaultCheck();
@@ -38,7 +59,7 @@ const formHandler = (event) => {
     resetForm();
   } else alert("Form not valid");
 };
-
+// secondary:populate select input with dummy options
 const insertSelect = () => {
   const select = document.querySelectorAll("select");
   var option;
@@ -51,7 +72,8 @@ const insertSelect = () => {
     }
   }
 };
-
+// secondary:fn validate select input
+// valid if the user select anything other than default/selected option
 const validateSelect = () => {
   const select = document.querySelectorAll("select");
   let flag = true;
@@ -65,6 +87,9 @@ const validateSelect = () => {
   }
   return flag;
 };
+//Secondary:fn  validate the date and time entered by the user
+// basically checks for the length of the select date or time
+//if empty length returns 0 else returns a value greater than 0
 const validateTimeDate = () => {
   let timeFlag = true,
     dateFlag = true,
@@ -92,6 +117,8 @@ const validateTimeDate = () => {
   flag = Boolean(flag);
   return flag;
 };
+// validate the text inputs for numeric values only
+// use Regular expression
 const validateText = () => {
   const exp = new RegExp("^[0-9]*$");
   let flag = true;

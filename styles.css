@@ -1,3 +1,9 @@
+/* 
+contains styles that mostly override the 
+styles set by bootstrap and some other styles 
+for UI
+*/
+
 .content-control--btn:active,
 .modal-footer button:active {
   transform: scale(0.9);
@@ -78,7 +84,7 @@ tbody tr th {
 .modal-header {
   background-color: #ccc;
 }
-/* media query */
+/* media query  for the modal to fill on sm devices*/
 @media screen and (max-width: 800px) {
   table {
     margin: 0;
