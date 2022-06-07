@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Vitals" content="Health Keeper!" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="validate.js"></script>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css" />
+    <title>Vitals</title>
+</head>
+
+<body>
+    <div class="container-fluid p-3">
+        <div class="content">
+            <div class="mb-4 d-flex justify-content-end">
+                <button class="content-control--btn">&lt;&lt;</button>
+                <button class="content-control--btn">&lt;</button>
+                <button class="content-control--btn">115 / 115</button>
+                <button class="content-control--btn" disabled>&gt;</button>
+                <button class="content-control--btn" disabled>&gt;&gt;</button>
+                <span class="content-control--date">02/02/2022</span>
+            </div>
+            <div class="content__navbar">
+                <nav>
+                    <div class="nav nav-tabs" id="first-tab" role="tablist">
+                        <button class="nav-link border border-bottom-0 me-1 active" id="vitals" data-bs-toggle="tab"
+                            data-bs-target="#nav-vitals" type="button" role="tab" aria-selected="true">
+                            Vitals Table
+                        </button>
+                        <button class="nav-link border border-bottom-0" id="graph" data-bs-toggle="tab"
+                            data-bs-target="#nav-graph" type="button" role="tab" aria-selected="false">
+                            Graphs
+                        </button>
+                    </div>
+                </nav>
+
+                <div class="tab-content mt-3" id="first-tab">
+                    <div class="tab-pane m-0 p-0 fade show active" id="nav-vitals" role="tabpanel" tabindex="0">
+                        <nav>
+                            <div class="nav nav-tabs mx-0" id="second-tab" role="tablist">
+                                <button class="nav-link active border border-bottom-0 me-1" id="nav-general-tab"
+                                    data-bs-toggle="tab" data-bs-target="#nav-general" type="button" role="tab"
+                                    aria-selected="true">
+                                    General
+                                </button>
+                                <button class="nav-link border border-bottom-0 me-1" id="nav-Cardiac-tab"
+                                    data-bs-toggle="tab" data-bs-target="#nav-cardiac" type="button" role="tab"
+                                    aria-selected="false">
+                                    Cardiac
+                                </button>
+                                <button class="nav-link border border-bottom-0 me-1" id="nav-Respiratory-tab"
+                                    data-bs-toggle="tab" data-bs-target="#nav-respiratory" type="button" role="tab"
+                                    aria-selected="false">
+                                    Respiratory
+                                </button>
+                                <button class="nav-link border border-bottom-0 me-1" id="nav-Neuro-tab"
+                                    data-bs-toggle="tab" data-bs-target="#nav-neuro" type="button" role="tab"
+                                    aria-selected="false">
+                                    Neuro
+                                </button>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="second-tab">
+                            <div class="tab-pane  fade show active" id="nav-general" role="tabpanel"
+                                aria-labelledby="nav-home-tab" tabindex="0">
+                                <button class="vital-input" data-bs-toggle="modal" role="button"
+                                    data-bs-target="#vital-modal">
+                                    +
+                                </button>
+                            </div>
+                            <div class="tab-pane fade" id="nav-cardiac" role="tabpanel"
+                                aria-labelledby="nav-profile-tab" tabindex="0">
+                                <button class="vital-input" data-bs-toggle="modal" role="button"
+                                    data-bs-target="#vital-modal">
+                                    +
+                                </button>
+                            </div>
+                            <div class="tab-pane fade" id="nav-respiratory" role="tabpanel"
+                                aria-labelledby="nav-contact-tab" tabindex="0">
+                                <button class="vital-input" data-bs-toggle="modal" role="button"
+                                    data-bs-target="#vital-modal">
+                                    +
+                                </button>
+                            </div>
+                            <div class="tab-pane  fade" id="nav-neuro" role="tabpanel"
+                                aria-labelledby="nav-disabled-tab" tabindex="0">
+                                <button class="vital-input" data-bs-toggle="modal" role="button"
+                                    data-bs-target="#vital-modal">
+                                    +
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="nav-graph" role="tabpanel" tabindex="0">
+                        Lorem ipsum dolor sit amet.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="vital-modal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header m-1 rounded">
+                    <h5 class="modal-title text-capitalize">Modal</h5>
+                    <button class="btn-class modal-close-btn" data-bs-dismiss="modal">
+                        X
+                    </button>
+                </div>
+                <div class="modal-body px-lg-5">
+                    <form id="vitalForm" onsubmit="formHandler(event)">
+                        <div class="d-md-flex justify-content-md-center">
+                            <table class="small modal-body--input">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th class="text-dark fw-bold">Vitals:</th>
+                                        <td>
+                                            <input type="date" id="vital-date" class="form-control" />
+                                        </td>
+                                        <td><input type="time" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Temp:</th>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><sup>o</sup>C</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Pulse:</th>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td>BPM</td>
+                                    </tr>
+                                    <tr>
+                                        <th>S BP:</th>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td>mmHg</td>
+                                    </tr>
+                                    <tr>
+                                        <th>D BP:</th>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td>mmHg</td>
+                                    </tr>
+                                    <tr>
+                                        <th>RR:</th>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td>BPM</td>
+                                    </tr>
+                                    <tr>
+                                        <th>O<sup>2</sup>Sat :</th>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td>%</td>
+                                    </tr>
+                                    <tr>
+                                        <th>FiO<sup>2</sup>:</th>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>PEEP:</th>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td>cmH<sub>2</sub>O</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Weight:</th>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td>Kg</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Height:</th>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td></td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td>m</td>
+                                    </tr>
+                                    <tr>
+                                        <th>BMI:</th>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>AVPU:</th>
+                                        <td><select class="form-select">
+                                                <option value="init"></option>
+                                            </select></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>GCS:</th>
+                                        <td><select class="form-select">
+                                                <option value="init"></option>
+                                            </select></td>
+                                        <td> /15</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <div>
+                        <button class="modal-footer__button" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                    <div>
+                        <button class="modal-footer__button" type="submit"
+                            onclick="document.getElementById('vitalForm').submit();" form="vitalForm"
+                            id="formBtn">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            let margin = 40;
+            $('.vital-input').each(function () {
+                $(this).css('margin-left', margin + 'px');
+                margin = margin + 110;
+            });
+            const getDate = () => {
+                let temp;
+                const date = new Date();
+                let day = date.getDate();
+                day = day < 10 ? '0' + day + '/' : date;
+                temp = date.getMonth() + 1;
+                temp = temp < 10 ? '0' + temp + '/' : temp;
+                day += temp;
+                day += date.getFullYear();
+                return day;
+            }
+            $('.content-control--date').html(getDate());
+            $('button.vital-input').click(function () {
+                resetForm(form);
+                let tabName = $(this).parent()[0].getAttribute('id').replace('nav-', '')
+                $('.modal-title').html('Bounce - ' + tabName + ' vital');
+            });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+.content-control--btn:active,
+.modal-footer button:active {
+  transform: scale(0.9);
+}
+.content-control--btn:disabled {
+  transform: scale(1);
+}
+.nav-link {
+  color: black !important;
+  padding: 10px 25px !important;
+}
+button.active {
+  margin-top: -5px;
+}
+
+.content__control {
+  text-align: right;
+  margin: 10px 0;
+}
+button:disabled {
+  background-color: #8e8e8e5e;
+}
+.content-control--btn {
+  border: 1px solid #8e8e8e;
+  border-radius: 0.2rem;
+  padding-bottom: 0.1rem;
+  margin-right: 5px;
+  box-shadow: 1px 1px 2px grey;
+}
+
+.content-control--date {
+  font-size: small;
+  vertical-align: top;
+}
+
+.content-navbar--navitem {
+  padding: 10px 35px;
+  margin-bottom: -1px;
+  background: 0 0;
+  border: 1px solid #8e8e8e;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+.vital-input {
+  border: 1px solid #d3d3d3;
+  box-shadow: 1px 1px 3px grey;
+  padding: 1px 15px;
+  margin: 20px;
+  border-radius: 4px;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.modal-footer__button {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+table {
+  margin-left: 25%;
+}
+thead {
+  text-align: center;
+}
+tbody tr th {
+  text-align: right;
+  font-weight: normal;
+}
+.modal-close-btn {
+  border: none;
+  background-color: transparent;
+  font-weight: bolder;
+}
+.modal-body--input {
+  color: #8e8e8e !important;
+}
+
+.modal-header {
+  background-color: #ccc;
+}
+/* media query */
+@media screen and (max-width: 800px) {
+  table {
+    margin: 0;
+  }
+}
