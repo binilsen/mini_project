@@ -1,4 +1,3 @@
-const form = document.getElementById("vitalForm");
 const addFormClass = (element, valid = true) => {
   if (valid) {
     element.classList += " is-valid";
@@ -18,7 +17,8 @@ const defaultCheck = () => {
   if (validateText() & validateSelect() & validateTimeDate()) return true;
   return false;
 };
-const resetForm = (form) => {
+const resetForm = () => {
+  const form = document.getElementById("vitalForm");
   const inputs = document.querySelectorAll("input[type=text]");
   inputs.forEach((x) => removeClasses(x));
   const inputDate = document.querySelector("input[type=date]");
@@ -33,11 +33,9 @@ const resetForm = (form) => {
 const formHandler = (event) => {
   event.preventDefault();
   let flag = defaultCheck();
-
   if (flag) {
     alert("Form Submitted");
-    resetForm(form);
-    return;
+    resetForm();
   } else alert("Form not valid");
 };
 
@@ -53,7 +51,7 @@ const insertSelect = () => {
     }
   }
 };
-insertSelect();
+
 const validateSelect = () => {
   const select = document.querySelectorAll("select");
   let flag = true;
