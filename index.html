@@ -11,6 +11,11 @@
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css" />
     <title>Vitals</title>
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,12 +37,14 @@
                 <!-- First main tab containing 2 tabs -->
                 <nav>
                     <div class="nav nav-tabs" id="first-tab" role="tablist">
-                        <button class="nav-link border border-bottom-0 me-1 active" id="vitals" data-bs-toggle="tab"
-                            data-bs-target="#nav-vitals" type="button" role="tab" aria-selected="true">
+                        <button class="nav-link  border-secondary px-5  border-bottom-0  active" id="vitals"
+                            data-bs-toggle="tab" data-bs-target="#nav-vitals" type="button" role="tab"
+                            aria-selected="true">
                             Vitals Table
                         </button>
-                        <button class="nav-link border border-bottom-0" id="graph" data-bs-toggle="tab"
-                            data-bs-target="#nav-graph" type="button" role="tab" aria-selected="false">
+                        <button class="nav-link border px-5 border-secondary  border-bottom-0" id="graph"
+                            data-bs-toggle="tab" data-bs-target="#nav-graph" type="button" role="tab"
+                            aria-selected="false">
                             Graphs
                         </button>
                     </div>
@@ -50,22 +57,22 @@
                         <!-- Second or inner tab starts here -->
                         <nav>
                             <div class="nav nav-tabs mx-0" id="second-tab" role="tablist">
-                                <button class="nav-link active border border-bottom-0 me-1" id="nav-general-tab"
-                                    data-bs-toggle="tab" data-bs-target="#nav-general" type="button" role="tab"
-                                    aria-selected="true">
+                                <button class="nav-link active border-secondary px-5 border border-bottom-0"
+                                    id="nav-general-tab" data-bs-toggle="tab" data-bs-target="#nav-general"
+                                    type="button" role="tab" aria-selected="true">
                                     General
                                 </button>
-                                <button class="nav-link border border-bottom-0 me-1" id="nav-Cardiac-tab"
-                                    data-bs-toggle="tab" data-bs-target="#nav-cardiac" type="button" role="tab"
-                                    aria-selected="false">
+                                <button class="nav-link border border-secondary px-5 border-bottom-0"
+                                    id="nav-Cardiac-tab" data-bs-toggle="tab" data-bs-target="#nav-cardiac"
+                                    type="button" role="tab" aria-selected="false">
                                     Cardiac
                                 </button>
-                                <button class="nav-link border border-bottom-0 me-1" id="nav-Respiratory-tab"
-                                    data-bs-toggle="tab" data-bs-target="#nav-respiratory" type="button" role="tab"
-                                    aria-selected="false">
+                                <button class="nav-link border border-secondary px-5 border-bottom-0"
+                                    id="nav-Respiratory-tab" data-bs-toggle="tab" data-bs-target="#nav-respiratory"
+                                    type="button" role="tab" aria-selected="false">
                                     Respiratory
                                 </button>
-                                <button class="nav-link border border-bottom-0 me-1" id="nav-Neuro-tab"
+                                <button class="nav-link border border-secondary px-5 border-bottom-0" id="nav-Neuro-tab"
                                     data-bs-toggle="tab" data-bs-target="#nav-neuro" type="button" role="tab"
                                     aria-selected="false">
                                     Neuro
@@ -86,21 +93,21 @@
                             <div class="tab-pane fade" id="nav-cardiac" role="tabpanel"
                                 aria-labelledby="nav-profile-tab" tabindex="0">
                                 <button class="vital-input" data-bs-toggle="modal" role="button"
-                                    data-bs-target="#vital-modal">
+                                    onclick="replaceInput(cardiac)" data-bs-target="#common-modal">
                                     +
                                 </button>
                             </div>
                             <div class="tab-pane fade" id="nav-respiratory" role="tabpanel"
                                 aria-labelledby="nav-contact-tab" tabindex="0">
                                 <button class="vital-input" data-bs-toggle="modal" role="button"
-                                    data-bs-target="#vital-modal">
+                                    data-bs-target="#common-modal" onclick="replaceInput(respiratory)">
                                     +
                                 </button>
                             </div>
                             <div class="tab-pane  fade" id="nav-neuro" role="tabpanel"
                                 aria-labelledby="nav-disabled-tab" tabindex="0">
                                 <button class="vital-input" data-bs-toggle="modal" role="button"
-                                    data-bs-target="#vital-modal">
+                                    data-bs-target="#common-modal" onclick="replaceInput(neuro)">
                                     +
                                 </button>
                             </div>
@@ -135,7 +142,7 @@
                 <div class="modal-body px-lg-5">
                     <form id="vitalForm" onsubmit="formHandler(event)">
                         <div class="d-md-flex justify-content-md-center">
-                            <table class="small modal-body--input">
+                            <table class="small center-temp modal-body--input">
                                 <thead>
                                     <tr>
                                         <th></th>
@@ -144,8 +151,6 @@
                                         <th></th>
                                         <th></th>
                                     </tr>
-                                </thead>
-                                <tbody>
                                     <tr>
                                         <th class="text-dark fw-bold">Vitals:</th>
                                         <td>
@@ -153,6 +158,8 @@
                                         </td>
                                         <td><input type="time" class="form-control" /></td>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     <tr>
                                         <th>Temp:</th>
                                         <td><input type="text" class="form-control"></td>
@@ -244,10 +251,91 @@
             </div>
         </div>
     </div>
+    <!-- common tab that display form input for other tabs -->
+    <div class="modal" id="common-modal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <!-- modal header containing username + tab name -->
+                <div class="modal-header m-1 rounded">
+                    <h5 class="modal-title text-capitalize">Modal</h5>
+                    <button class="btn-class modal-close-btn" data-bs-dismiss="modal">
+                        X
+                    </button>
+                </div>
+                <!-- modal header ends here -->
+                <!-- modal body containing form for filling vital details -->
+                <div class="modal-body px-lg-5">
+                    <form id="commonForm" onsubmit="formHandler(event,this)">
+                        <div class="d-md-flex justify-content-md-center">
+                            <table class="small center-temp modal-body--input">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-dark text-end fw-bold">Vitals:</th>
+                                        <td>
+                                            <input type="date" id="vital-date" class="form-control" />
+                                        </td>
+                                        <td><input type="time" class="form-control" /></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+                <!-- modal body containing form ends here -->
+                <!-- modal footer containing cancel and submit button -->
+                <div class="modal-footer justify-content-between">
+                    <!-- cancel button close the model -->
+                    <div>
+                        <button class="modal-footer__button" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                    <!-- submit button submit the target form i.e the form inside the modal body -->
+                    <div>
+                        <button class="modal-footer__button" type="submit" form="commonForm"
+                            id="formBtn">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- modal ends here -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
+        /*
+       Data for form , contain different labels and thier unit 
+       also contain input type specifier 
+       */
+        const cardiac = [
+            { "name": 'Heart Rate', "unit": 'beat/min', 'type': false },
+            { "name": 'Blood Pressure', "unit": 'mm/Hg', 'type': false },
+            { 'name': "Temp", 'unit': '<sup>0</sup>C', 'type': false },
+            { 'name': 'O<sub>2</sub>', 'unit': 'SpO<sub>2</sub>', 'type': false }
+        ]
+        const neuro = [
+            { 'name': 'Reaction L', 'unit': '', 'type': true },
+            { 'name': 'Reaction R', 'unit': '', 'type': false },
+            { 'name': 'Size L', 'unit': 'mm', 'type': false },
+            { 'name': 'Size R', 'unit': 'mm', 'type': false },
+            { 'name': 'Eyes', 'unit': '', 'type': true }
+        ]
+        const respiratory = [
+            { 'name': 'Duration', 'unit': 'min', 'type': false },
+            { 'name': 'MAP', 'unit': 'mmHg', 'type': false },
+            { 'name': 'ICP', 'unit': 'mmHg', 'type': false },
+            { 'name': 'CPP', 'unit': 'mmHg', 'type': false },
+            { 'name': 'Motor', 'unit': '', 'type': true }
+        ]
+        /////////////////////////////////////////////////////////////////
+
         insertSelect(); // enumerate the select input with dummy options
         $(document).ready(function () {
             //programmatically adding margin to the + button which opens the
@@ -255,7 +343,7 @@
             let margin = 40;
             $('.vital-input').each(function () {
                 $(this).css('margin-left', margin + 'px');
-                margin = margin + 110;
+                margin = margin + 173;
             });
             //Dynamically inserting date in the page header
             const getDate = () => {
@@ -274,11 +362,46 @@
             // reseting the from on each trigger of modal
             // also fetching the tab name from parent element
             $('button.vital-input').click(function () {
-                resetForm();
+                if (($(this).attr('data-bs-target').includes('common')))
+                    resetForm('commonForm');
+                else resetForm('vitalForm');
                 let tabName = $(this).parent()[0].getAttribute('id').replace('nav-', '')
                 $('.modal-title').html('Bounce - ' + tabName + ' vital');
             });
         });
+        //  replacing the modal form field
+        const inputWrapper = document.querySelector('#commonForm tbody');
+        function createInput(select = false) {
+            if (select) {
+                const field = document.createElement('select');
+                field.append(document.createElement('option'));
+                field.classList += ' form-select';
+                return field;
+            }
+            const field = document.createElement('input');
+            field.setAttribute('type', 'text');
+            field.classList += ' form-control';
+            return field;
+        }
+        function createFieldRow(label, select = false, un) {
+            const tr = document.createElement('tr');
+            const th = document.createElement('th');
+            const td = document.createElement('td');
+            const unit = document.createElement('td');
+            th.innerHTML = label + ':';
+            td.appendChild(createInput(select));
+            unit.innerHTML = un;
+            tr.append(th, td, unit);
+            return tr;
+        }
+        function replaceInput(data) {
+            inputWrapper.innerHTML = '';
+            for (let index = 0; index < data.length; index++) {
+                inputWrapper.append(createFieldRow(data[index].name, data[index].type, data[index].unit));
+            }
+            insertSelect();
+            return 0;
+        }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>

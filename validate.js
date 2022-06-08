@@ -31,27 +31,33 @@ const removeClasses = (element) => {
   return;
 };
 //Helper:reset the form (uses other helper fn)
-const resetForm = () => {
-  const form = document.getElementById("vitalForm");
-  const inputs = document.querySelectorAll("input[type=text]");
+const resetForm = (formName) => {
+  const form = document.getElementById(formName);
+  const inputs = document.querySelectorAll(
+    "#" + formName + " input[type=text]"
+  );
+  const select = document.querySelectorAll("#" + formName + " select");
+  const inputDate = document.querySelector(
+    "#" + formName + " input[type=date]"
+  );
+  const inputTime = document.querySelector(
+    "#" + formName + " input[type=time]"
+  );
   inputs.forEach((x) => removeClasses(x));
-  const inputDate = document.querySelector("input[type=date]");
-  const inputTime = document.querySelector("input[type=time]");
   removeClasses(inputDate);
   removeClasses(inputTime);
-  const select = document.querySelectorAll("select");
   select.forEach((x) => removeClasses(x));
   form.reset();
 };
 // Primary:formHandler that process the form on clicking submit
 // just return an alert specifying validation status
-const formHandler = (event) => {
+function formHandler(event) {
   event.preventDefault();
-  // fetch all form inputs
-  const inputs = document.querySelectorAll("input[type=text]");
-  const select = document.querySelectorAll("select");
-  const inputDate = document.querySelector("input[type=date]");
-  const inputTime = document.querySelector("input[type=time]");
+  const form = event.target.getAttribute("id");
+  const inputs = document.querySelectorAll("#" + form + " input[type=text]");
+  const select = document.querySelectorAll("#" + form + " select");
+  const inputDate = document.querySelector("#" + form + " input[type=date]");
+  const inputTime = document.querySelector("#" + form + " input[type=time]");
   let inputFlag = true,
     selectFlag = true, // flags denoting different types of inputs
     dateFlag = true,
@@ -70,10 +76,10 @@ const formHandler = (event) => {
   if (formValidity) {
     setTimeout(() => {
       alert("Form Submitted"); // alert user on successful submission and reset form
-      resetForm();
+      resetForm(form);
     }, 500);
   }
-};
+}
 // Helper:populate select input with dummy options
 const insertSelect = () => {
   const select = document.querySelectorAll("select");
