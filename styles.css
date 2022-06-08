@@ -44,7 +44,10 @@ button:disabled {
   margin-right: 8px;
   box-shadow: 1px 1px 4px #8e8e8e;
 }
-
+input,
+select {
+  border: 1.5px solid #8e8e8e !important;
+}
 .content-control--date {
   font-size: small;
   vertical-align: top;
@@ -80,7 +83,7 @@ button:disabled {
 #vitalForm table {
   margin-left: 25%;
 }
-thead {
+thead:first-child {
   text-align: center;
 }
 tbody tr th {
