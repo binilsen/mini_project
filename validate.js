@@ -10,7 +10,6 @@ validity FALSE.
 function category:
 ------------------------
 Primary:triggered for handling the main event
-Secondary:fn to help primary and to render elements in the dom.
 Helper: functions  created for doing the repetative task
 */
 
@@ -31,11 +30,6 @@ const removeClasses = (element) => {
   element.classList.remove("is-invalid");
   return;
 };
-//Secondary:return overall form validation status
-const defaultCheck = () => {
-  if (validateText() & validateSelect() & validateTimeDate()) return true;
-  return false;
-};
 //Helper:reset the form (uses other helper fn)
 const resetForm = () => {
   const form = document.getElementById("vitalForm");
@@ -53,13 +47,34 @@ const resetForm = () => {
 // just return an alert specifying validation status
 const formHandler = (event) => {
   event.preventDefault();
-  let flag = defaultCheck();
-  if (flag) {
-    alert("Form Submitted");
-    resetForm();
-  } else alert("Form not valid");
+  // fetch all form inputs
+  const inputs = document.querySelectorAll("input[type=text]");
+  const select = document.querySelectorAll("select");
+  const inputDate = document.querySelector("input[type=date]");
+  const inputTime = document.querySelector("input[type=time]");
+  let inputFlag = true,
+    selectFlag = true, // flags denoting different types of inputs
+    dateFlag = true,
+    timeFlag = true;
+  // checking validity of different inputs
+  dateFlag = validateTimeDate(inputDate, false);
+  inputs.forEach((x) => {
+    inputFlag = validateText(x) && inputFlag;
+  });
+  select.forEach((x) => {
+    selectFlag = validateSelect(x) && selectFlag;
+  });
+  timeFlag = validateTimeDate(inputTime);
+  //overall form validity
+  let formValidity = dateFlag && inputFlag && selectFlag && timeFlag;
+  if (formValidity) {
+    setTimeout(() => {
+      alert("Form Submitted"); // alert user on successful submission and reset form
+      resetForm();
+    }, 500);
+  }
 };
-// secondary:populate select input with dummy options
+// Helper:populate select input with dummy options
 const insertSelect = () => {
   const select = document.querySelectorAll("select");
   var option;
@@ -72,64 +87,40 @@ const insertSelect = () => {
     }
   }
 };
-// secondary:fn validate select input
+// Helper:fn validate select input
 // valid if the user select anything other than default/selected option
-const validateSelect = () => {
-  const select = document.querySelectorAll("select");
-  let flag = true;
-  for (const item of select) {
-    if (item.selectedIndex == 0) {
-      addFormClass(item, false);
-      flag = false;
-    } else {
-      addFormClass(item);
-    }
+const validateSelect = (element) => {
+  if (element.selectedIndex >= 1) {
+    addFormClass(element);
+    return true;
   }
-  return flag;
+  addFormClass(element, false);
+  return false;
 };
-//Secondary:fn  validate the date and time entered by the user
-// basically checks for the length of the select date or time
-//if empty length returns 0 else returns a value greater than 0
-const validateTimeDate = () => {
-  let timeFlag = true,
-    dateFlag = true,
-    flag = true;
-  const inputDate = document.querySelector("input[type=date]");
-  const inputTime = document.querySelector("input[type=time]");
-  let value = inputDate.value;
-  value = value.split("-");
-  time = inputTime.value;
-  time = time.split(":");
+/*Helper:fn  validate the date and time entered by the user
+ basically checks for the length of the select date or time
+if empty length returns 0 else returns a value greater than 0
+*/
+const validateTimeDate = (element, time = true) => {
+  let value = element.value;
+  if (!time) value = value.split("-");
+  else value = value.split(":");
   if (value.length > 1) {
-    addFormClass(inputDate);
-  } else {
-    addFormClass(inputDate, false);
-    dateFlag = false;
+    addFormClass(element);
+    return true;
   }
-
-  if (time.length > 1) {
-    addFormClass(inputTime);
-  } else {
-    addFormClass(inputTime, false);
-    timeFlag = false;
-  }
-  flag = dateFlag & timeFlag;
-  flag = Boolean(flag);
-  return flag;
+  addFormClass(element, false);
+  return false;
 };
-// validate the text inputs for numeric values only
-// use Regular expression
-const validateText = () => {
+/* Helper:validate the text inputs for numeric values and length of input
+ use Regular expression
+ */
+const validateText = (element) => {
   const exp = new RegExp("^[0-9]*$");
-  let flag = true;
-  const inputs = document.querySelectorAll("input[type=text]");
-  for (const element of inputs) {
-    if (exp.test(element.value) & (element.value != "")) {
-      addFormClass(element);
-    } else {
-      addFormClass(element, false);
-      flag = false;
-    }
+  if (element.value.length > 0 && exp.test(element.value)) {
+    addFormClass(element);
+    return true;
   }
-  return flag;
+  addFormClass(element, false);
+  return false;
 };
