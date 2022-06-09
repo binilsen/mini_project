@@ -33,16 +33,10 @@ const removeClasses = (element) => {
 //Helper:reset the form (uses other helper fn)
 const resetForm = (formName) => {
   const form = document.getElementById(formName);
-  const inputs = document.querySelectorAll(
-    "#" + formName + " input[type=text]"
-  );
-  const select = document.querySelectorAll("#" + formName + " select");
-  const inputDate = document.querySelector(
-    "#" + formName + " input[type=date]"
-  );
-  const inputTime = document.querySelector(
-    "#" + formName + " input[type=time]"
-  );
+  const inputs = document.querySelectorAll("input[type=text]");
+  const select = document.querySelectorAll("select");
+  const inputDate = document.querySelector(" input[type=date]");
+  const inputTime = document.querySelector("input[type=time]");
   inputs.forEach((x) => removeClasses(x));
   removeClasses(inputDate);
   removeClasses(inputTime);
@@ -53,11 +47,10 @@ const resetForm = (formName) => {
 // just return an alert specifying validation status
 function formHandler(event) {
   event.preventDefault();
-  const form = event.target.getAttribute("id");
-  const inputs = document.querySelectorAll("#" + form + " input[type=text]");
-  const select = document.querySelectorAll("#" + form + " select");
-  const inputDate = document.querySelector("#" + form + " input[type=date]");
-  const inputTime = document.querySelector("#" + form + " input[type=time]");
+  const inputs = document.querySelectorAll("input[type=text]");
+  const select = document.querySelectorAll("select");
+  const inputDate = document.querySelector("input[type=date]");
+  const inputTime = document.querySelector("input[type=time]");
   let inputFlag = true,
     selectFlag = true, // flags denoting different types of inputs
     dateFlag = true,
@@ -81,7 +74,7 @@ function formHandler(event) {
   }
 }
 // Helper:populate select input with dummy options
-const insertSelect = () => {
+const insertSelect = (main = true) => {
   const select = document.querySelectorAll("select");
   var option;
   for (const item of select) {

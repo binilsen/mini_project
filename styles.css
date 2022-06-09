@@ -102,10 +102,14 @@ tbody tr th {
 .modal-header {
   background-color: #ccc;
 }
+.temp-margin {
+  margin-left: 25%;
+}
 /* media query  for the modal to fill on sm devices*/
 @media screen and (max-width: 900px) {
   table {
-    margin: 0;
+    margin-left: 0;
+    /* padding-right: 200px; */
   }
   .vital-input {
     margin-left: 20px !important;

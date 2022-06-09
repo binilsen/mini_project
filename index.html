@@ -86,7 +86,7 @@
                             <div class="tab-pane  fade show active" id="nav-general" role="tabpanel"
                                 aria-labelledby="nav-home-tab" tabindex="0">
                                 <button class="vital-input" data-bs-toggle="modal" role="button"
-                                    data-bs-target="#vital-modal">
+                                    data-bs-target="#common-modal" onclick="mainTabContent(general)">
                                     +
                                 </button>
                             </div>
@@ -126,131 +126,6 @@
     </div>
     <!-- container ends here -->
 
-    <!-- modal for inner tab , opens on clicking + button -->
-    <div class="modal" id="vital-modal">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
-            <div class="modal-content">
-                <!-- modal header containing username + tab name -->
-                <div class="modal-header m-1 rounded">
-                    <h5 class="modal-title text-capitalize">Modal</h5>
-                    <button class="btn-class modal-close-btn" data-bs-dismiss="modal">
-                        X
-                    </button>
-                </div>
-                <!-- modal header ends here -->
-                <!-- modal body containing form for filling vital details -->
-                <div class="modal-body px-lg-5">
-                    <form id="vitalForm" onsubmit="formHandler(event)">
-                        <div class="d-md-flex justify-content-md-center">
-                            <table class="small center-temp modal-body--input">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Date</th>
-                                        <th>Time</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                    <tr>
-                                        <th class="text-dark fw-bold">Vitals:</th>
-                                        <td>
-                                            <input type="date" id="vital-date" class="form-control form-control-sm" />
-                                        </td>
-                                        <td><input type="time" class="form-control form-control-sm" /></td>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th>Temp:</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                        <td><sup>o</sup>C</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Pulse:</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                        <td>BPM</td>
-                                    </tr>
-                                    <tr>
-                                        <th>S BP:</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                        <td>mmHg</td>
-                                    </tr>
-                                    <tr>
-                                        <th>D BP:</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                        <td>mmHg</td>
-                                    </tr>
-                                    <tr>
-                                        <th>RR:</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                        <td>BPM</td>
-                                    </tr>
-                                    <tr>
-                                        <th>O<sup>2</sup>Sat :</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                        <td>%</td>
-                                    </tr>
-                                    <tr>
-                                        <th>FiO<sup>2</sup>:</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th>PEEP:</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                        <td>cmH<sub>2</sub>O</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Weight:</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                        <td>Kg</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Height:</th>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                        <td></td>
-                                        <td><input type="text" class="form-control form-control-sm"></td>
-                                        <td>m</td>
-                                    </tr>
-                                    <tr>
-                                        <th>BMI:</th>
-                                        <td><input type="text" class="form-control  form-control-sm"></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th>AVPU:</th>
-                                        <td><select class="form-select form-select-sm">
-                                                <option value="init"></option>
-                                            </select></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <th>GCS:</th>
-                                        <td><select class="form-select form-select-sm">
-                                                <option value="init"></option>
-                                            </select></td>
-                                        <td> /15</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
-                </div>
-                <!-- modal body containing form ends here -->
-                <!-- modal footer containing cancel and submit button -->
-                <div class="modal-footer justify-content-between">
-                    <!-- cancel button close the model -->
-                    <div>
-                        <button class="modal-footer__button" data-bs-dismiss="modal">Cancel</button>
-                    </div>
-                    <!-- submit button submit the target form i.e the form inside the modal body -->
-                    <div>
-                        <button class="modal-footer__button" type="submit" form="vitalForm" id="formBtn">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- common tab that display form input for other tabs -->
     <div class="modal" id="common-modal">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
@@ -340,7 +215,7 @@
             { 'name': 'Pulse', 'unit': 'BPM', 'type': false },
             { 'name': 'S BP', 'unit': 'mmHg', 'type': false },
             { 'name': 'D BP', 'unit': 'mmHg', 'type': false },
-              { 'name': 'RR', 'unit': 'BPM', 'type': false },
+            { 'name': 'RR', 'unit': 'BPM', 'type': false },
             { 'name': 'O<sup>2</sup>Sat', 'unit': '%', 'type': false },
             { 'name': 'FiO<sup>2</sup>', 'unit': '', 'type': false },
             { 'name': 'PEEP', 'unit': 'cmH<sub>2</sub>O', 'type': false },
@@ -359,6 +234,21 @@
             { 'name': 'PEEP', 'unit': 'cmH<sub>2</sub>O', 'type': false },
             { 'name': 'Weight', 'unit': 'Kg', 'type': false },
             { 'name': 'Eyes', 'unit': '', 'type': true },
+        ]
+        const general = [
+            { 'name': 'Temp', 'unit': '<sup>0</sup>C', 'type': false },
+            { 'name': 'Pulse', 'unit': 'BPM', 'type': false },
+            { 'name': 'S BP', 'unit': 'mmHg', 'type': false },
+            { 'name': 'D BP', 'unit': 'mmHg', 'type': false },
+            { 'name': 'RR', 'unit': 'BPM', 'type': false },
+            { 'name': 'O<sup>2</sup>Sat', 'unit': '%', 'type': false },
+            { 'name': 'FiO<sup>2</sup>', 'unit': '', 'type': false },
+            { 'name': 'PEEP', 'unit': 'cmH<sub>2</sub>O', 'type': false },
+            { 'name': 'Weight', 'unit': 'Kg', 'type': false },
+            { 'name': 'Height', 'unit': '', 'name2': '', 'unit2': 'm' },
+            { 'name': 'BMI', 'unit': '', 'type': false },
+            { 'name': 'AVPU', 'unit': '', 'type': true },
+            { 'name': 'GCS', 'unit': ' /15', 'type': true },
         ]
         /////////////////////////////////////////////////////////////////
 
@@ -395,6 +285,7 @@
                 $('.modal-title').html('Bounce - ' + tabName + ' vital');
             });
         });
+
         //  replacing the modal form field
         const inputWrapper = document.querySelector('#commonForm tbody');
         function createInput(select = false) {
@@ -409,23 +300,49 @@
             field.classList += ' form-control form-control-sm';
             return field;
         }
-        function createFieldRow(label, select = false, un) {
+        function createFieldRow(label, select = false, un, main = false, secondLabel = '', secondUnit = '') {
             const tr = document.createElement('tr');
             const th = document.createElement('th');
             const td = document.createElement('td');
             const unit = document.createElement('td');
+            const mainContentTd = document.createElement('td');
+            const mainContentTdUnit = document.createElement('td');
             th.innerHTML = label + ':';
             td.appendChild(createInput(select));
             unit.innerHTML = un;
             tr.append(th, td, unit);
+            if (main) {
+                mainContentTdUnit.textContent = secondUnit;
+                mainContentTd.append(createInput(select));
+                tr.append(mainContentTd, mainContentTdUnit);
+                return tr;
+            }
             return tr;
         }
+        // replacing helper function ends here
+
+
         function replaceInput(data) {
+            document.querySelector('#commonForm table').classList.remove('temp-margin');
             inputWrapper.innerHTML = '';
             for (let index = 0; index < data.length; index++) {
                 inputWrapper.append(createFieldRow(data[index].name, data[index].type, data[index].unit));
             }
-            insertSelect();
+            insertSelect(false);
+            return 0;
+        }
+        /* trying to reuse common modal for all */
+        function mainTabContent(data) {
+            document.querySelector('#commonForm table').classList += ' temp-margin';
+            inputWrapper.innerHTML = '';
+            for (let index = 0; index < data.length; index++) {
+                if (data[index].name == 'Height') {
+                    inputWrapper.append(createFieldRow(data[index].name, data[index].type, data[index].unit, true, data[index].name2, data[index].unit2));
+                    continue;
+                }
+                inputWrapper.append(createFieldRow(data[index].name, data[index].type, data[index].unit));
+            }
+            insertSelect(false);
             return 0;
         }
     </script>
