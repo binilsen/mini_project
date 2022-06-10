@@ -376,7 +376,7 @@
                 let temp;
                 const date = new Date();
                 let day = date.getDate();
-                day = day < 10 ? '0' + day + '/' : date;
+                day = day < 10 ? '0' + day + '/' : day+'/';
                 temp = date.getMonth() + 1;
                 temp = temp < 10 ? '0' + temp + '/' : temp;
                 day += temp;
